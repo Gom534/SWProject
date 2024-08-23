@@ -18,7 +18,7 @@ class BlankFragment : Fragment() {
         // 전달된 인자를 기반으로 UI 업데이트
         val imageView = view?.findViewById<ImageView>(R.id.imageView)
         val page = arguments?.getInt("page") ?: 0
-        // 이미지 설정 (여기서는 예제로 ic_launcher_foreground를 사용)
+        // 이미지 설정
         val imageResId = when (page) {
             0 -> R.drawable.image1 // 첫 번째 페이지 이미지
             1 -> R.drawable.image2 // 두 번째 페이지 이미지

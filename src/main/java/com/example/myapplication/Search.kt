@@ -43,15 +43,12 @@ class Search : AppCompatActivity() {
                 false
             }
         }
-
         // EditText 검색 기능 추가
         editTextSearch.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 // 여기에 startActivity를 호출하지 않음
             }
-
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 adapter.filter.filter(s)
             }
@@ -74,7 +71,9 @@ class Search : AppCompatActivity() {
             iterator.forEachRemaining { line ->
                 val columns = line.split(",")
                 val restStopName = columns[0] // 첫 번째 열의 값을 읽어옵니다.
-                nameList.add(restStopName)
+                val updownName = columns[3]
+                nameList.add(restStopName +
+                        '(' +updownName + ')')
             }
         }
         return nameList

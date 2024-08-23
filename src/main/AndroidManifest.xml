@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
@@ -12,10 +14,39 @@
         android:label="고속도로 포장서비스 "
         android:roundIcon="@drawable/project3"
         android:supportsRtl="true"
-        android:theme="@style/Theme.App20240524">
+        android:theme="@style/Theme.App20240524" >
+        <activity
+            android:name=".fcm.FCMActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchButton"
+            android:exported="false" />
+        <activity
+            android:name=".MyImageView"
+            android:exported="false" />
+        <activity
+            android:name=".WriteReview"
+            android:exported="false" />
+        <activity
+            android:name=".Contentpage"
+            android:exported="false" />
+        <activity
+            android:name=".WritePage"
+            android:exported="false" />
+        <activity
+            android:name=".Community"
+            android:exported="false" />
         <activity
             android:name=".Resultpage"
             android:exported="false" />
+
+        <service
+            android:name=".fcm.MyFirebaseMessagingService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <meta-data
             android:name="com.google.android.actions"
@@ -33,14 +64,14 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_API_KEY" />
+            android:value="${myProperty}" />
 
         <activity
             android:name=".Packaging"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

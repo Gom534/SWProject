@@ -58,8 +58,6 @@
             android:background="#FFFFFF"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/cart3" />
-
-
     </androidx.appcompat.widget.Toolbar>
 
     <TextView

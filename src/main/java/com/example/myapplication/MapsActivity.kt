@@ -33,7 +33,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private val latLonList = mutableListOf<RestStop>()
 
     // Class to hold rest stop information
-    data class RestStop(val name: String, val latitude: Double, val longitude: Double)
+    data class RestStop(val name: String,val highname :String, val updown :String,
+                        val latitude: Double, val longitude: Double)
 
     // 권한 변수
     private val locationPermissionRequest = registerForActivityResult(
@@ -66,7 +67,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
         // 권한 확인 및 요청
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
             ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -97,10 +97,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     val currentLatLng = LatLng(location.latitude, location.longitude)
                     mMap.clear() // Clear existing markers
                     mMap.addMarker(MarkerOptions().position(currentLatLng).title("Current Location"))
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 10f))
-                    findNearestRestStop(currentLatLng)?.let { nearestRestStop ->
-                        val restStopLatLng = LatLng(nearestRestStop.latitude, nearestRestStop.longitude)
-                        mMap.addMarker(MarkerOptions().position(restStopLatLng).title(nearestRestStop.name))
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 11f))
+                    val nearestRestStops = findNearestRestStops(currentLatLng, 5)
+                    for (restStop in nearestRestStops) {
+                        mMap.addMarker(
+                            MarkerOptions()
+                                .position(LatLng(restStop.latitude, restStop.longitude))
+                                .title(restStop.name +"휴게소 /"+ restStop.highname+ "("+restStop.updown+")")
+
+                        )
                     }
                 }
             }
@@ -116,22 +121,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         Log.d("LatLonList", latLonList.toString())
     }
 
-    private fun findNearestRestStop(userLocation: LatLng): RestStop? {
+    private fun findNearestRestStops(userLocation: LatLng, count: Int = 5): List<RestStop> {
         if (latLonList.isEmpty()) {
-            return null
+            return emptyList()
         }
-        var nearestRestStop: RestStop? = null
-        var nearestDistance = Double.MAX_VALUE
 
+        val distanceList = mutableListOf<Pair<Double, RestStop>>()
         for (restStop in latLonList) {
             val distance = calculateDistance(userLocation, LatLng(restStop.latitude, restStop.longitude))
-            if (distance < nearestDistance) {
-                nearestDistance = distance
-                nearestRestStop = restStop
-            }
+            distanceList.add(distance to restStop)
         }
 
-        return nearestRestStop
+        distanceList.sortBy { it.first }
+        return distanceList.take(count).map { it.second }
     }
 
     private fun readLatLonFromCsv(inputStream: InputStream): List<RestStop> {
@@ -144,9 +146,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 val columns = line.split(",")
                 try {
                     val name = columns[0] // 휴게소 이름이 첫번째 열에 있다고 가정합니다.
+                    val highname = columns[2] // 고속도로 이름이 세번째 열에 있다고 가정합니다.
+                    val updown = columns[3] // 상행선,하행선 이름이 네번째 열에 있다고 가정합니다.
                     val latitude = columns[4].toDouble() // 위도가 5번째 열에 있다고 가정합니다.
                     val longitude = columns[5].toDouble() // 경도가 6번째 열에 있다고 가정합니다.
-                    latLonList.add(RestStop(name, latitude, longitude))
+                    latLonList.add(RestStop(name, highname,updown, latitude, longitude))
                 } catch (e: NumberFormatException) {
                     Log.e("MapsActivity", "Invalid number format in CSV: ${columns[4]}, ${columns[5]}")
                     // continue to next line if there's a number format exception

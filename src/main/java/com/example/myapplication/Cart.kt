@@ -28,6 +28,8 @@ class Cart : AppCompatActivity(), LifecycleObserver {
     private lateinit var database: DatabaseReference
     private lateinit var buttonContainer : LinearLayout
     private var getcount1 = 1
+    private val kakaopay = BuildConfig.kakaopaykey
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cart)
@@ -54,6 +56,7 @@ class Cart : AppCompatActivity(), LifecycleObserver {
         Log.d("getcount",getcount1.toString())
         val categoriesRef = database.child("장바구니").child(getcount1.toString())
         val backgroudrawble : Drawable? = ContextCompat.getDrawable(this, R.drawable.rounded_button)
+        val plusbackgroudrawble : Drawable? = ContextCompat.getDrawable(this, R.drawable.plus)
         categoriesRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 // 마테고리 안에있는 데이터 하나씩 가져오기
@@ -96,6 +99,7 @@ class Cart : AppCompatActivity(), LifecycleObserver {
             }
         })
     }
+
     private fun formatCategoryData(data: Map<*, *>): String {
         val formattedString = StringBuilder()
         for ((key, value) in data) {
@@ -108,13 +112,17 @@ class Cart : AppCompatActivity(), LifecycleObserver {
         }
         return formattedString.toString()
     }
+
+
     /*
-        카카오페이API 사용시도
+        카카오페이API Json형식을 못지켜서 500에러가 났었음 - 0618해결
     =================================================================
     =================================================================
      */
+
+
     private fun preparePayment() {
-        val authorization = "SECRET_KEY DEV01058BFFDB0F2DE565B5B7F539F7DC9B57EEB"
+        val authorization = "SECRET_KEY $kakaopay"
         val type = "application/json"
         val request = PaymentReadyRequest(
             cid = "TC0ONETIME",
@@ -157,9 +165,6 @@ class Cart : AppCompatActivity(), LifecycleObserver {
             }
         })
     }
-
-
-
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         intent?.data?.let { uri ->
@@ -170,10 +175,8 @@ class Cart : AppCompatActivity(), LifecycleObserver {
             }
         }
     }
-
-
     private fun approvePayment(tid: String, pgToken: String) {
-        val authorization = "SECRET_KEY DEV01058BFFDB0F2DE565B5B7F539F7DC9B57EEB"
+        val authorization = "SECRET_KEY $kakaopay"
         val type = "application/json"
         val request = PaymentApproveRequest(
             cid = "TC0ONETIME",
@@ -196,7 +199,6 @@ class Cart : AppCompatActivity(), LifecycleObserver {
                     Toast.makeText(this@Cart, "결제 승인 실패: ${response.code()}", Toast.LENGTH_SHORT).show()
                 }
             }
-
             override fun onFailure(call: Call<PaymentApproveResponse>, t: Throwable) {
                 Log.e("approveError", "결제 승인 중 에러 발생", t)
                 Toast.makeText(this@Cart, "결제 승인 중 에러 발생", Toast.LENGTH_SHORT).show()

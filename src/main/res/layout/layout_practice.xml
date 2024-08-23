@@ -10,211 +10,385 @@
     android:orientation="horizontal"
     tools:context=".MainActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="111dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/round_layout_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:paddingStart="15dp"
+            android:text="디젤 \n1689원"
+            android:textColor="#000"
+            app:layout_constraintBottom_toBottomOf="@+id/textView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintStart_toStartOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/oiltextView"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical"
+            android:paddingStart="15dp"
+            android:text="LPG \n1689원"
+            android:textColor="#000"
+            app:layout_constraintBottom_toBottomOf="@+id/textView5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/oiltextView"
+            app:layout_constraintVertical_bias="0.947" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="12dp"
+            android:gravity="center_vertical"
+            android:paddingStart="15dp"
+            android:text="가솔린 \n1689원"
+            android:textColor="#000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.019"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/oiltextView"
+            app:layout_constraintVertical_bias="0.86" />
+
+        <TextView
+            android:id="@+id/oiltextView"
+            android:layout_width="123dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:background="@null"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="오늘의 유가정보"
+            android:textColor="#000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
-        android:layout_height="115dp"
-        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="0.0">
-
-        <EditText
-            android:id="@+id/editTextText"
-            android:layout_width="245dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:drawableLeft="@drawable/search"
-            android:ems="10"
-            android:hint="다른 휴게소가 궁금하다면?"
-            android:inputType="text"
-            android:textColor="#009688"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.168"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:paddingStart="24dp"
+            android:background="#fff"
             android:paddingTop="10dp"
-            android:text="1"
-            android:textColor="@color/black"
+            android:text="김해금관가야휴게소"
+            android:textColor="#000"
             android:textSize="25dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button2"
-            app:layout_constraintHorizontal_bias="0.479"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.186" />
+            app:layout_constraintVertical_bias="0.032" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_button"
-            android:text="주변 휴게소"
-            android:textColorLink="#FFFFFF"
-            android:textStyle="bold"
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_marginTop="16dp"
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.894"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.208" />
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintVertical_bias="0.289">
+
+        </androidx.viewpager2.widget.ViewPager2>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="408dp"
-        android:layout_height="124dp"
-        android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.278">
-
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
-            android:background="@drawable/rounded_button"
-            android:drawableEnd="@drawable/bag2"
-            android:gravity="start"
-            android:paddingLeft="30dp"
-            android:paddingTop="30dp"
-            android:text="포장\n서비스"
-            android:textAlignment="textStart"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="200dp"
-            android:background="@drawable/rounded_button"
-            android:drawableEnd="@drawable/trevel"
-            android:gravity="start"
-            android:paddingLeft="20dp"
-            android:paddingTop="30dp"
-            android:text="이거어때"
-            android:textAlignment="textStart"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-    </FrameLayout>
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
+        android:background="#6d2ef2"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.666">
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="50dp"
-            android:text="휴게 서비스"
-            android:textColor="#000000"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-            app:layout_constraintEnd_toEndOf="@+id/toolbar"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/toolbar"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.65" />
-
-        <ImageButton
-            android:id="@+id/imageButton3"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="140dp"
-            android:layout_marginBottom="9dp"
-            android:background="#FFFFFF"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-            app:layout_constraintEnd_toEndOf="@+id/toolbar"
-            app:layout_constraintHorizontal_bias="0.803"
-            app:layout_constraintStart_toEndOf="@+id/textView3"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/bell2" />
-
-        <ImageButton
-            android:id="@+id/imageButton4"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="0dp"
-            android:background="#FFFFFF"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/cart3" />
+        app:layout_constraintTop_toTopOf="parent">
 
     </androidx.appcompat.widget.Toolbar>
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="63dp"
-        android:layout_height="52dp"
-        android:backgroundTint="#FFFFFF"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        tools:layout_editor_absoluteX="16dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Hot Place"
+            android:textColor="#fff"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+             />
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginEnd="16dp"
+            android:background="#6d2ef2"
+            app:tint="#fff"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/cart3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@null">
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/round_layout_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintHorizontal_bias="0.761"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.929"
-        app:srcCompat="@drawable/station" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+        app:layout_constraintVertical_bias="0">
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="318dp"
-        android:layout_height="76dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="320dp"
-        android:paddingTop="20dp"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
-        app:layout_constraintVertical_bias="0.375" />
+        <ImageButton
+            android:id="@+id/seachbtn"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="#fff"
+            android:scaleType="fitCenter"
+            android:src="@drawable/search114"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.125"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
-        android:layout_width="374dp"
-        android:layout_height="261dp"
-        android:layout_marginTop="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton"
+
+        <TextView
+            android:id="@+id/textView12"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="검색"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/seachbtn"
+            app:layout_constraintStart_toStartOf="@+id/seachbtn"
+            app:layout_constraintTop_toBottomOf="@id/seachbtn">
+
+        </TextView>
+
+        <ImageButton
+            android:id="@+id/button2"
+            android:layout_width="50dp"
+            android:layout_height="45dp"
+            android:background="#fff"
+            android:scaleType="fitCenter"
+            android:src="@drawable/mapblue"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textView6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.375"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/seachbtn" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내주변"
+            android:textAlignment="center"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/button2"
+            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintStart_toStartOf="@+id/button2"
+            app:layout_constraintTop_toBottomOf="@+id/seachbtn" />
+
+        <ImageButton
+            android:id="@+id/button"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+
+            android:background="#fff"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            android:src="@drawable/cart1"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.875
+"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/seachbtn" />
+
+        <ImageButton
+            android:id="@+id/button1"
+            android:layout_width="50dp"
+            android:layout_height="45dp"
+            android:background="#fff"
+            android:scaleType="fitCenter"
+            android:src="@drawable/boardblue"
+            app:layout_constraintBottom_toBottomOf="@+id/button2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.625"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/button2"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="포장"
+            android:textSize="15dp"
+
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/button"
+            app:layout_constraintStart_toStartOf="@+id/button"
+            app:layout_constraintTop_toTopOf="@+id/textView12" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="게시판"
+            android:textSize="15dp"
+            app:layout_constraintEnd_toEndOf="@+id/button1"
+            app:layout_constraintStart_toStartOf="@+id/button1"
+            app:layout_constraintTop_toTopOf="@+id/textView12" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/round_layout_white"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
+        app:layout_constraintVertical_bias="0.307">
 
-    </androidx.viewpager2.widget.ViewPager2>
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="최신 게시물"
+            android:textColor="#000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.052"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.155" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:text="반갑습니다"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView10"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.304" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="반갑습니다"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/textView11"
+            app:layout_constraintVertical_bias="0" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="반갑습니다"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/textView14"
+            app:layout_constraintVertical_bias="0" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

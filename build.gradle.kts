@@ -1,10 +1,15 @@
+import com.android.manifmerger.Actions.load
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
     id("com.google.gms.google-services")
 }
-
+val properties = Properties().apply {
+    load(project.rootProject.file("local.properties").inputStream())
+}
 
 android {
     namespace = "com.example.myapplication"
@@ -17,6 +22,13 @@ android {
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "API_KEY", properties.getProperty("api.key"))
+        buildConfigField("String", "OILAPI_KEY", properties.getProperty("oilapi.key"))
+        buildConfigField("String", "kakao_KEY", properties.getProperty("kakaopay.key"))
+        val myProperty = properties.getProperty("api.key")
+        if (myProperty != null) {
+            manifestPlaceholders["myProperty"] = myProperty
+        }
     }
 
     buildTypes {
@@ -37,9 +49,12 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 dependencies {
+    val coreversion = "1.13.1"
+    implementation("androidx.core:core-ktx:$coreversion")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.9.0")
@@ -67,5 +82,8 @@ dependencies {
     implementation ("androidx.viewpager2:viewpager2:1.0.0")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+    implementation ("com.google.firebase:firebase-storage:21.0.0")
+    implementation ("com.google.firebase:firebase-messaging-ktx")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
 }
